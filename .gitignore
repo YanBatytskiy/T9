@@ -39,7 +39,7 @@ main.dSYM/
 Doxyfile
 *.puml
 *.svg
-*.png
+# *.png
 *.html
 
 # Но НЕ игнорировать эти
