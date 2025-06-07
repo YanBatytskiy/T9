@@ -36,6 +36,11 @@ cmake --build build
 ```bash
 ./build/T9
 ```
+### 🚀 4. Кроссплатформенность
+![Linux](./Screens/Linux_support.png)
+![MacOS](./Screens/MacOS_support.png)
+![Windows](./Screens/Windows_support.png)
+
 ---
 
 ## 📚 Лицензия
