@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-/**
+/**B
  * @brief Главное текстовое меню T9.
  *
  * @param trie Ссылка на объект Trie (префиксное дерево), с которым работает
@@ -15,7 +15,7 @@
  * продолжается.
  *
  * @throws EmptyInputException если строка пуста.
- * @throws WrongCommandException если команда неизвестна.
+ * @throws WrongCommandException если команда неизвестна.B
  */
 short authMenu(Trie &trie) {
   while (true) {

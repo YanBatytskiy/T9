@@ -10,27 +10,42 @@
 #include <iostream>
 #include <locale>
 
-#ifdef _WIN32
-#include <windows.h>
+#if defined(_WIN32)
+    #include <windows.h>
 #endif
 
 /**
  * @brief Включает поддержку UTF-8 в консоли.
  *
- * @details Устанавливает глобальную локаль "en_US.UTF-8" и
- * применяет её к std::wcin, std::wcout и std::wcerr.
- * В Windows дополнительно настраивает кодовые страницы консоли.
+ * @details Настраивает глобальную локаль и кодировку консоли.
+ * Работает стабильно на Windows (MSYS2/MinGW), Linux и macOS.
  */
 inline void enableUTF8Console() {
-  std::locale utf8_locale("en_US.UTF-8");
-  std::locale::global(utf8_locale);
+#if defined(_WIN32)
+    try {
+        std::locale utf8_locale(""); // системная локаль (обычно UTF-8 в MSYS2)
+        std::locale::global(utf8_locale);
 
-  std::wcin.imbue(utf8_locale);
-  std::wcout.imbue(utf8_locale);
-  std::wcerr.imbue(utf8_locale);
+        std::wcin.imbue(utf8_locale);
+        std::wcout.imbue(utf8_locale);
+        std::wcerr.imbue(utf8_locale);
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to set UTF-8 locale on Windows: " << e.what() << std::endl;
+    }
 
-#ifdef _WIN32
-  SetConsoleOutputCP(CP_UTF8);
-  SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
+#else
+    try {
+        std::locale utf8_locale("en_US.UTF-8");
+        std::locale::global(utf8_locale);
+
+        std::wcin.imbue(utf8_locale);
+        std::wcout.imbue(utf8_locale);
+        std::wcerr.imbue(utf8_locale);
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to set UTF-8 locale on Unix: " << e.what() << std::endl;
+    }
 #endif
 }
