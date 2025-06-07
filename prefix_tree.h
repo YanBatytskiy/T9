@@ -51,7 +51,13 @@ private:
    * @brief Рекурсивно удаляет поддерево.
    * @param node Указатель на текущий узел
    */
-  void deleteSubTrie(TrieNode *node);
+  void deleteSubTrie(TrieNode *node) {
+    if (!node)
+      return;
+    for (int i = 0; i < ALPHABET_SIZE; ++i)
+      deleteSubTrie(node->children[i]);
+    delete node;
+  }
 
   /**
    * @brief Получает длину UTF-8 символа.

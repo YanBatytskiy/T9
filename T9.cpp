@@ -90,7 +90,11 @@ int main() {
   dictionary.push_back("кот");
   dictionary.push_back("котище");
   dictionary.push_back("котик");
+  dictionary.push_back("котико");
   dictionary.push_back("котофей");
+  dictionary.push_back("котомка");
+  dictionary.push_back("котлин");
+  dictionary.push_back("котомафия");
   dictionary.push_back("рак");
   dictionary.push_back("ракот");
   dictionary.push_back("рачок");
